@@ -1,4 +1,9 @@
 import uuid
+from faker import Faker
+
+
+fake = Faker(["en-GB"])
+
 
 class User:
     email = ""
@@ -8,12 +13,14 @@ class User:
     email_user_id = ""
     id = ""
 
-    def __init__(self, email: str, first_name: str, last_name: str) -> None:
-        self.email = email
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email_user_id = email
-        self.username = email
+    def __init__(self, email: str = None, first_name: str = None, last_name: str = None) -> None:
+        
+
+        self.email = email if email else fake.email()
+        self.first_name = first_name if first_name else fake.first_name()
+        self.last_name = last_name if last_name else fake.last_name()
+        self.email_user_id = self.email
+        self.username = self.email
         self.id = uuid.uuid4()
 
 

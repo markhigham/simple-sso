@@ -1,13 +1,13 @@
 from flask import jsonify
 from sso_user import User
-
 from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
+current_user = User()
 
-    u = User("mark@mark.com", "Mark", "Higham")
+@app.route('/o/authorize/')
+def authorize():
+    
 
-    return jsonify(u.to_json())
+    return jsonify(current_user.to_json())
