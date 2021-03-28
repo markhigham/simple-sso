@@ -4,7 +4,7 @@ from flask import Flask, request, redirect
 
 app = Flask(__name__)
 
-current_user = User()
+current_user = User(email="test.user@example.com", first_name="Test", last_name="User")
 
 
 @app.route("/o/authorize/")
