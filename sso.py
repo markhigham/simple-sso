@@ -9,14 +9,12 @@ current_user = User(email="test.user@example.com", first_name="Test", last_name=
 
 @app.route("/o/authorize/")
 def authorize():
-
     client_redirect_uri = request.args["redirect_uri"]
 
     redirect_uri = (
         f"{client_redirect_uri}?state=abcde&redirect_uri={client_redirect_uri}&code=any_old_code"
     )
 
-    app.logger.debug(redirect_uri)
     return redirect(redirect_uri, code=302)
 
 
@@ -29,15 +27,11 @@ def exchange_token():
 
 @app.route("/api/v1/user/me/")
 def get_user():
-
     return jsonify(current_user.to_json())
 
 
 @app.route("/api/v1/user/set/", methods=["POST"])
 def set_user():
-
-    app.logger.debug(request.json)
-
     new_user = request.json
 
     if new_user.get("email"):
