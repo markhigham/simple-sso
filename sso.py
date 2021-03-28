@@ -1,7 +1,6 @@
 from flask import jsonify
 from sso_user import User
 from flask import Flask, request, redirect
-from uuid import uuid4
 
 app = Flask(__name__)
 
@@ -11,11 +10,11 @@ current_user = User()
 @app.route("/o/authorize/")
 def authorize():
 
-    # app.logger.debug(request.args["redirect_uri"])
-
     client_redirect_uri = request.args["redirect_uri"]
 
-    redirect_uri = f"{client_redirect_uri}?state=abcde&redirect_uri={client_redirect_uri}&code=any_old_code"
+    redirect_uri = (
+        f"{client_redirect_uri}?state=abcde&redirect_uri={client_redirect_uri}&code=any_old_code"
+    )
 
     app.logger.debug(redirect_uri)
     return redirect(redirect_uri, code=302)

@@ -6,9 +6,7 @@ fake = Faker(["en-GB"])
 
 
 class User:
-    def __init__(
-        self, email: str = None, first_name: str = None, last_name: str = None
-    ) -> None:
+    def __init__(self, email: str = None, first_name: str = None, last_name: str = None) -> None:
 
         self.email = email if email else fake.email()
         self.first_name = first_name if first_name else fake.first_name()
