@@ -20,8 +20,10 @@ def authorize():
 
 @app.route("/o/token/", methods=["POST"])
 def exchange_token():
-
-    result = {"access_token": current_user.id, "token_type": "Bearer"}
+    
+    token = request.form.get("code")
+    app.logger.debug(token)
+    result = {"access_token": token, "token_type": "Bearer"}
     return jsonify(result)
 
 
